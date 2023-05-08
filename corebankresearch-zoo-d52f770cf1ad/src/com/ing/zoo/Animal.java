@@ -10,4 +10,8 @@ public class Animal {
     public void sayHello(){
         System.out.println("*animal sound*");
     }
+
+    public void performTrick(){
+        trick = "";
+    }
 }

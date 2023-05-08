@@ -56,7 +56,11 @@ public class Zoo {
                 break;
             case "perform":
                 if (splited[1].equals("trick")){
-                    System.out.println("no tricks yet");
+                    for (Animal animal: animals) {
+                        if (animal.trick != ""){
+                            animal.performTrick();
+                        }
+                    }
                 }
                 break;
 //
