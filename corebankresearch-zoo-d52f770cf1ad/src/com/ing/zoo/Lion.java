@@ -1,9 +1,6 @@
 package com.ing.zoo;
 
-public class Lion extends Animal{
-//    public String name;
-//    public String helloText;
-//    public String eatText;
+public class Lion extends Carnivore{
 
     public Lion()
     {
@@ -15,6 +12,7 @@ public class Lion extends Animal{
         System.out.println(helloText);
     }
 
+    @Override
     public void eatMeat()
     {
         eatText = "nomnomnom thx mate";

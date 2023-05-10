@@ -1,5 +1,6 @@
 package com.ing.zoo;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -46,9 +47,19 @@ public class Zoo {
                 break;
             case "give":
                 if (splited[1].equals("leaves")){
-                    System.out.println("no leaves yet");
+                    for (Animal animal: animals) {
+                        if (animal.getClass().getSuperclass().equals(Herbivore.class)){
+                            Herbivore herbAnimal = (Herbivore) animal;
+                            herbAnimal.eatLeaves();
+                        }
+                    }
                 }else if (splited[1].equals("meat")){
-                    System.out.println("no meat yet");
+                    for (Animal animal: animals) {
+                        if (animal.getClass().getSuperclass().equals(Carnivore.class)){
+                            Carnivore carAnimal = (Carnivore) animal;
+                            carAnimal.eatMeat();
+                        }
+                    }
                 }
                 else{
                     System.out.println("Unknown command: " + input);
