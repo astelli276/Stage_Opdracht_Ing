@@ -39,25 +39,43 @@ public class Zoo {
 
         switch (splited[0]){
             case "hello":
-                for (Animal animal :animals) {
-                    if (animal.name.equals(splited[1])){
+                try {
+                    String inputAnimalName = splited[1];
+                    for (Animal animal :animals) {
+                        if (animal.name.equals(inputAnimalName)){
+                            animal.sayHello();
+                        }
+                    }
+                }catch (Exception e){
+                    for (Animal animal :animals) {
                         animal.sayHello();
                     }
                 }
                 break;
+                
             case "give":
                 if (splited[1].equals("leaves")){
                     for (Animal animal: animals) {
-                        if (animal.getClass().getSuperclass().equals(Herbivore.class)){
-                            Herbivore herbAnimal = (Herbivore) animal;
-                            herbAnimal.eatLeaves();
+                        Class parentClass = animal.getClass().getSuperclass();
+                        if (parentClass.equals(Herbivore.class)){
+                            Herbivore herbivore = (Herbivore) animal;
+                            herbivore.eatLeaves();
+                        }
+                        else if (parentClass.equals(Omnivore.class)){
+                            Omnivore omnivore = (Omnivore) animal;
+                            omnivore.eatLeaves();
                         }
                     }
                 }else if (splited[1].equals("meat")){
                     for (Animal animal: animals) {
-                        if (animal.getClass().getSuperclass().equals(Carnivore.class)){
-                            Carnivore carAnimal = (Carnivore) animal;
-                            carAnimal.eatMeat();
+                        Class parentClass = animal.getClass().getSuperclass();
+                        if (parentClass.equals(Carnivore.class)){
+                            Carnivore carnivore = (Carnivore) animal;
+                            carnivore.eatMeat();
+                        }
+                        else if (parentClass.equals(Omnivore.class)){
+                            Omnivore omnivore = (Omnivore) animal;
+                            omnivore.eatMeat();
                         }
                     }
                 }
@@ -67,16 +85,22 @@ public class Zoo {
                 break;
             case "perform":
                 if (splited[1].equals("trick")){
-                    for (Animal animal: animals) {
-                        if (animal.trick != ""){
-                            animal.performTrick();
-                        }
-                    }
+                    letAnimalsPreformTricks(animals);
                 }
                 break;
+            default:
+                System.out.println("Unknown command: " + input);
 //
         }
 
+    }
+
+    public static void letAnimalsPreformTricks(ArrayList<Animal> animals){
+        for (Animal animal: animals) {
+            if (animal.trick != ""){
+                animal.performTrick();
+            }
+        }
     }
 
 }
