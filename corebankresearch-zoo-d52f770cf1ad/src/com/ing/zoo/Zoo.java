@@ -31,6 +31,13 @@ public class Zoo {
         marty.name = "marty";
         animals.add(marty);
 
+        Bear yogi = new Bear();
+        yogi.name = "yogi";
+        animals.add(yogi);
+        Penguin pingu = new Penguin();
+        pingu.name = "pingu";
+        animals.add(pingu);
+
         Scanner scanner = new Scanner(System.in);
         System.out.print("Voer uw command in: ");
 
@@ -52,32 +59,12 @@ public class Zoo {
                     }
                 }
                 break;
-                
+
             case "give":
                 if (splited[1].equals("leaves")){
-                    for (Animal animal: animals) {
-                        Class parentClass = animal.getClass().getSuperclass();
-                        if (parentClass.equals(Herbivore.class)){
-                            Herbivore herbivore = (Herbivore) animal;
-                            herbivore.eatLeaves();
-                        }
-                        else if (parentClass.equals(Omnivore.class)){
-                            Omnivore omnivore = (Omnivore) animal;
-                            omnivore.eatLeaves();
-                        }
-                    }
+                    letAnimalsEatLeaves(animals);
                 }else if (splited[1].equals("meat")){
-                    for (Animal animal: animals) {
-                        Class parentClass = animal.getClass().getSuperclass();
-                        if (parentClass.equals(Carnivore.class)){
-                            Carnivore carnivore = (Carnivore) animal;
-                            carnivore.eatMeat();
-                        }
-                        else if (parentClass.equals(Omnivore.class)){
-                            Omnivore omnivore = (Omnivore) animal;
-                            omnivore.eatMeat();
-                        }
-                    }
+                    letAnimalsEatMeat(animals);
                 }
                 else{
                     System.out.println("Unknown command: " + input);
@@ -90,9 +77,36 @@ public class Zoo {
                 break;
             default:
                 System.out.println("Unknown command: " + input);
-//
         }
 
+    }
+
+    public static void letAnimalsEatLeaves(ArrayList<Animal> animals){
+        for (Animal animal: animals) {
+            Class parentClass = animal.getClass().getSuperclass();
+            if (parentClass.equals(Herbivore.class)){
+                Herbivore herbivore = (Herbivore) animal;
+                herbivore.eatLeaves();
+            }
+            else if (parentClass.equals(Omnivore.class)){
+                Omnivore omnivore = (Omnivore) animal;
+                omnivore.eatLeaves();
+            }
+        }
+    }
+
+    public static void letAnimalsEatMeat(ArrayList<Animal> animals){
+        for (Animal animal: animals) {
+            Class parentClass = animal.getClass().getSuperclass();
+            if (parentClass.equals(Carnivore.class)){
+                Carnivore carnivore = (Carnivore) animal;
+                carnivore.eatMeat();
+            }
+            else if (parentClass.equals(Omnivore.class)){
+                Omnivore omnivore = (Omnivore) animal;
+                omnivore.eatMeat();
+            }
+        }
     }
 
     public static void letAnimalsPreformTricks(ArrayList<Animal> animals){
