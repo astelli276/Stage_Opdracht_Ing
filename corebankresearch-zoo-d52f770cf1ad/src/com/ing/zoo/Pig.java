@@ -2,7 +2,7 @@ package com.ing.zoo;
 
 import java.util.Random;
 
-public class Pig extends Animal{
+public class Pig extends Omnivore{
 
     public Pig()
     {
@@ -16,14 +16,14 @@ public class Pig extends Animal{
         System.out.println(helloText);
     }
 
-//    @Override
+    @Override
     public void eatLeaves()
     {
         eatText = "munch munch oink";
         System.out.println(eatText);
     }
 
-//    @Override
+    @Override
     public void eatMeat()
     {
         eatText = "nomnomnom oink thx";
