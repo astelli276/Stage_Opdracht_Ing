@@ -53,18 +53,18 @@ public class Zoo {
         System.out.print("Voer uw command in: ");
 
         String input = scanner.nextLine();
-        String[] splited = input.split("\\s+");
+        String[] splited = input.split("\\s");
 
         switch (splited[0]){
             case "hello":
-                try {
+                if (splited.length > 1){
                     String inputAnimalName = splited[1];
                     for (Animal animal :animals) {
                         if (animal.name.equals(inputAnimalName)){
                             animal.sayHello();
                         }
                     }
-                }catch (Exception e){
+                }else {
                     for (Animal animal :animals) {
                         animal.sayHello();
                     }
@@ -72,13 +72,10 @@ public class Zoo {
                 break;
 
             case "give":
-                boolean giveLeaves;
                 if (splited[1].equals("leaves")){
-                    giveLeaves = true;
-                    letAnimalsEat(animals, giveLeaves);
+                    letAnimalsEat(animals, true);
                 }else if (splited[1].equals("meat")){
-                    giveLeaves = false;
-                    letAnimalsEat(animals, giveLeaves);
+                    letAnimalsEat(animals, false);
                 }
                 else{
                     System.out.println("Unknown command: " + input);
