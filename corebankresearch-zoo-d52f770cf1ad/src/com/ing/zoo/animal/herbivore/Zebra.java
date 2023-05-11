@@ -1,7 +1,9 @@
-package com.ing.zoo;
+package com.ing.zoo.animal.herbivore;
 
 
-public class Zebra extends Herbivore{
+import com.ing.zoo.animal.herbivore.Herbivore;
+
+public class Zebra extends Herbivore {
 
     public Zebra()
     {

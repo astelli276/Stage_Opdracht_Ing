@@ -1,6 +1,8 @@
-package com.ing.zoo;
+package com.ing.zoo.animal.carnivore;
 
-public class Penguin extends Carnivore{
+import com.ing.zoo.animal.carnivore.Carnivore;
+
+public class Penguin extends Carnivore {
 
     public Penguin(){
 

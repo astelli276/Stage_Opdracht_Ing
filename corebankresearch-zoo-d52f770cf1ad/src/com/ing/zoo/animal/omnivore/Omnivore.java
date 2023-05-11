@@ -1,6 +1,8 @@
-package com.ing.zoo;
+package com.ing.zoo.animal.omnivore;
 
-public class Omnivore extends Animal{
+import com.ing.zoo.animal.Animal;
+
+public class Omnivore extends Animal {
 
     public void eatLeaves()
     {

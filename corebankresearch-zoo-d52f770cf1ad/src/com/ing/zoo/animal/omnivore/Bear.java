@@ -1,8 +1,9 @@
-package com.ing.zoo;
+package com.ing.zoo.animal.omnivore;
 
-import java.util.Random;
 
-public class Bear extends Omnivore{
+import com.ing.zoo.animal.omnivore.Omnivore;
+
+public class Bear extends Omnivore {
 
     public Bear(){
 

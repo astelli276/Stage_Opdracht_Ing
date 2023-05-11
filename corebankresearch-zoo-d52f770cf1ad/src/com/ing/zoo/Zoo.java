@@ -1,6 +1,17 @@
 package com.ing.zoo;
 
-import java.lang.reflect.Array;
+import com.ing.zoo.animal.*;
+import com.ing.zoo.animal.carnivore.Carnivore;
+import com.ing.zoo.animal.carnivore.Lion;
+import com.ing.zoo.animal.carnivore.Penguin;
+import com.ing.zoo.animal.carnivore.Tiger;
+import com.ing.zoo.animal.herbivore.Herbivore;
+import com.ing.zoo.animal.herbivore.Hippo;
+import com.ing.zoo.animal.herbivore.Zebra;
+import com.ing.zoo.animal.omnivore.Bear;
+import com.ing.zoo.animal.omnivore.Omnivore;
+import com.ing.zoo.animal.omnivore.Pig;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -61,10 +72,13 @@ public class Zoo {
                 break;
 
             case "give":
+                boolean giveLeaves;
                 if (splited[1].equals("leaves")){
-                    letAnimalsEatLeaves(animals);
+                    giveLeaves = true;
+                    letAnimalsEat(animals, giveLeaves);
                 }else if (splited[1].equals("meat")){
-                    letAnimalsEatMeat(animals);
+                    giveLeaves = false;
+                    letAnimalsEat(animals, giveLeaves);
                 }
                 else{
                     System.out.println("Unknown command: " + input);
@@ -81,30 +95,23 @@ public class Zoo {
 
     }
 
-    public static void letAnimalsEatLeaves(ArrayList<Animal> animals){
+    public static void letAnimalsEat(ArrayList<Animal> animals, boolean eatLeaves){
         for (Animal animal: animals) {
             Class parentClass = animal.getClass().getSuperclass();
-            if (parentClass.equals(Herbivore.class)){
+            if (parentClass.equals(Herbivore.class) && eatLeaves){
                 Herbivore herbivore = (Herbivore) animal;
                 herbivore.eatLeaves();
-            }
-            else if (parentClass.equals(Omnivore.class)){
-                Omnivore omnivore = (Omnivore) animal;
-                omnivore.eatLeaves();
-            }
-        }
-    }
-
-    public static void letAnimalsEatMeat(ArrayList<Animal> animals){
-        for (Animal animal: animals) {
-            Class parentClass = animal.getClass().getSuperclass();
-            if (parentClass.equals(Carnivore.class)){
+            }else if (parentClass.equals(Carnivore.class) && !eatLeaves){
                 Carnivore carnivore = (Carnivore) animal;
                 carnivore.eatMeat();
             }
             else if (parentClass.equals(Omnivore.class)){
                 Omnivore omnivore = (Omnivore) animal;
-                omnivore.eatMeat();
+                if (eatLeaves){
+                    omnivore.eatLeaves();
+                }else {
+                    omnivore.eatMeat();
+                }
             }
         }
     }
